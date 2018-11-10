@@ -9,11 +9,12 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="stylesheets/style.css">
     </head>
-    <body>
+    <body onload="myfunc()">
         <nav class="navbar bg-dark navbar-dark">
                 <!-- Brand -->
-            <a class="navbar-brand" href="#">Humanity First Oral Health</a>
+            <a class="navbar-brand" href="#">Humanity First</a>
             
             <!-- Toggler/collapsibe Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -34,7 +35,551 @@
                 </li> 
                 </ul>
             </div> 
-
         </nav>
+        <!-- End of NavBar -->
+        <!-- Body -->
+        <br><br>
+        <form>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" style="background-color :white;">
+                        <h3>Personal Data</h3>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <table class="table borderless">
+                        <tr>
+                            <td class="tableLabel"><span class="labels">Full Name<sup>*</sup></span></td>
+                            <td><input class="inputs" type="text" placeholder="Firstname Lastname"></td>
+                        </tr>
+                        <tr>
+                            <td class="tableLabel"><span class="labels">Date of birth<sup>*</sup></span> </td>
+                            <td><input type="date" class="inputs" name="bday"></td>
+                        </tr>
+                        <tr>
+                            <td class="tableLabel"><span class="labels">Age in years<sup>*</sup></span></td>
+                            <td><input type="number" class="inputs"></td>
+                        </tr>
+                        <tr>
+                            <td class="tableLabel"><span class="labels">Years in school<sup>*</sup></span></td>
+                            <td><input type="number" class="inputs"></td>
+                        </tr>
+                        <tr>
+                            <td class="tableLabel"><span class="labels">Occupation<sup>*</sup></span></td>
+                            <td><input type="text" class="inputs"></td>
+                        </tr>
+                        <tr>
+                            <td class="tableLabel"><span class="labels">Location<sup>*</sup></span></td>
+                            <td>
+                                <select type="select" name="location">
+                                    <option value="urban">Urban</option>
+                                    <option value="periurban">Periurban</option>
+                                    <option value="rural">Rural</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tableLabel"><span class="labels">Other data</span></td>
+                            <td><input type="text" class="inputs"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" style="background-color :white;">
+                        <h3>Dentition Status</h3>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="container col-md-8">
+                        <table class="table denitionTable">
+                            <tr>
+                                <td class="tableInfo"></td>
+                                <td class="tableInfo"></td>
+                                <td class="tableInfo"></td>
+                                <td class="tableInfo">55</td>
+                                <td class="tableInfo">54</td>
+                                <td class="tableInfo">53</td>
+                                <td class="tableInfo">52</td>
+                                <td class="tableInfo">51</td>
+                                <td class="tableInfo">61</td>
+                                <td class="tableInfo">62</td>
+                                <td class="tableInfo">63</td>
+                                <td class="tableInfo">64</td>
+                                <td class="tableInfo">65</td>
+                            </tr>
+                            <tr>
+                                <td class="tableInfo"></td>
+                                <td class="tableInfo">17</td>
+                                <td class="tableInfo">16</td>
+                                <td class="tableInfo">15</td>
+                                <td class="tableInfo">14</td>
+                                <td class="tableInfo">13</td>
+                                <td class="tableInfo">12</td>
+                                <td class="tableInfo">11</td>
+                                <td class="tableInfo">21</td>
+                                <td class="tableInfo">22</td>
+                                <td class="tableInfo">23</td>
+                                <td class="tableInfo">24</td>
+                                <td class="tableInfo">25</td>
+                                <td class="tableInfo">26</td>
+                                <td class="tableInfo">27</td>
+                            </tr>
+                            <tr>
+                                <td class="tableInfo">Crown</td>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                            </tr>
+                            <tr>
+                                <td class="tableInfo">Crown</td>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                            </tr>
+                            <tr>
+                                    <td class="tableInfo"></td>
+                                    <td class="tableInfo"></td>
+                                    <td class="tableInfo"></td>
+                                    <td class="tableInfo">85</td>
+                                    <td class="tableInfo">84</td>
+                                    <td class="tableInfo">83</td>
+                                    <td class="tableInfo">82</td>
+                                    <td class="tableInfo">81</td>
+                                    <td class="tableInfo">71</td>
+                                    <td class="tableInfo">72</td>
+                                    <td class="tableInfo">73</td>
+                                    <td class="tableInfo">74</td>
+                                    <td class="tableInfo">75</td>
+                                </tr>
+                                <tr>
+                                    <td class="tableInfo"></td>
+                                    <td class="tableInfo">47</td>
+                                    <td class="tableInfo">46</td>
+                                    <td class="tableInfo">45</td>
+                                    <td class="tableInfo">44</td>
+                                    <td class="tableInfo">43</td>
+                                    <td class="tableInfo">42</td>
+                                    <td class="tableInfo">41</td>
+                                    <td class="tableInfo">31</td>
+                                    <td class="tableInfo">32</td>
+                                    <td class="tableInfo">33</td>
+                                    <td class="tableInfo">34</td>
+                                    <td class="tableInfo">35</td>
+                                    <td class="tableInfo">36</td>
+                                    <td class="tableInfo">37</td>
+                                </tr>
+                        </table>    
+                    </div>
+                    <div class="container col-md-4">
+                        <table class="table answerTable">
+                            <tr>
+                                <th>Primary teeth</th>
+                                <th>Permanent teeth</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>A</td>
+                                <td>0 = Sound</td>
+                            </tr>
+                            <tr>
+                                <td>B</td>
+                                <td>1 = Caries</td>
+                            </tr>
+                            <tr>
+                                <td>C</td>
+                                <td>2 = Filled w/caries</td>
+                            </tr>
+                            <tr>
+                                <td>D</td>
+                                <td>3 = Filled, no caries </td>
+                            </tr>
+                            <tr>
+                                <td>E</td>
+                                <td>4 = Missing due to caries</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>5 = Missing for any other reason</td>
+                            </tr>
+                            <tr>
+                                <td>F</td>
+                                <td>6 = Fissure sealant</td>
+                            </tr>
+                            <tr>
+                                <td>G</td>
+                                <td>7 = Fixed dental prosthesis/crown,abutment,veneer</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>8 = Unerupted</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>9 = Not recorded</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" style="background-color :white;">
+                        <h3>Periodontal Status</h3>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="container col-md-8">
+                        <table class="table denitionTable">
+                            <tr>
+                                <td class="tableInfo"></td>
+                                <td class="tableInfo"></td>
+                                <td class="tableInfo"></td>
+                                <td class="tableInfo">55</td>
+                                <td class="tableInfo">54</td>
+                                <td class="tableInfo">53</td>
+                                <td class="tableInfo">52</td>
+                                <td class="tableInfo">51</td>
+                                <td class="tableInfo">61</td>
+                                <td class="tableInfo">62</td>
+                                <td class="tableInfo">63</td>
+                                <td class="tableInfo">64</td>
+                                <td class="tableInfo">65</td>
+                            </tr>
+                            <tr>
+                                <td class="tableInfo"></td>
+                                <td class="tableInfo">17</td>
+                                <td class="tableInfo">16</td>
+                                <td class="tableInfo">15</td>
+                                <td class="tableInfo">14</td>
+                                <td class="tableInfo">13</td>
+                                <td class="tableInfo">12</td>
+                                <td class="tableInfo">11</td>
+                                <td class="tableInfo">21</td>
+                                <td class="tableInfo">22</td>
+                                <td class="tableInfo">23</td>
+                                <td class="tableInfo">24</td>
+                                <td class="tableInfo">25</td>
+                                <td class="tableInfo">26</td>
+                                <td class="tableInfo">27</td>
+                            </tr>
+                            <tr>
+                                <td class="tableInfo">Crown</td>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                            </tr>
+                            <tr>
+                                <td class="tableInfo">Crown</td>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9"></th>
+                            </tr>
+                            <tr>
+                                    <td class="tableInfo"></td>
+                                    <td class="tableInfo"></td>
+                                    <td class="tableInfo"></td>
+                                    <td class="tableInfo">85</td>
+                                    <td class="tableInfo">84</td>
+                                    <td class="tableInfo">83</td>
+                                    <td class="tableInfo">82</td>
+                                    <td class="tableInfo">81</td>
+                                    <td class="tableInfo">71</td>
+                                    <td class="tableInfo">72</td>
+                                    <td class="tableInfo">73</td>
+                                    <td class="tableInfo">74</td>
+                                    <td class="tableInfo">75</td>
+                                </tr>
+                                <tr>
+                                    <td class="tableInfo"></td>
+                                    <td class="tableInfo">47</td>
+                                    <td class="tableInfo">46</td>
+                                    <td class="tableInfo">45</td>
+                                    <td class="tableInfo">44</td>
+                                    <td class="tableInfo">43</td>
+                                    <td class="tableInfo">42</td>
+                                    <td class="tableInfo">41</td>
+                                    <td class="tableInfo">31</td>
+                                    <td class="tableInfo">32</td>
+                                    <td class="tableInfo">33</td>
+                                    <td class="tableInfo">34</td>
+                                    <td class="tableInfo">35</td>
+                                    <td class="tableInfo">36</td>
+                                    <td class="tableInfo">37</td>
+                                </tr>
+                        </table> 
+                        <span style=""><b>Gingival bleeding</b></span>  
+                        <table class="answerTable">
+                            <tr>
+                                <th>Scored</th>
+                            </tr>
+                            <tr>
+                                <td>0 = Absence of condition</td>
+                                <td>9 = Tooth excluded</td>
+                            </tr>
+                            <tr>
+                                <td>1 =     Presence of condition</td>
+                                <td>X = Tooth not present</td>
+                            </tr>
+                        </table> 
+                    </div>
+                    <div class="container col-md-4">
+                        <br>
+                        <span><b>Enamel fluorosis <sup>*</sup></b></span><input class="inputs" type="number" style="width:50%;" required>
+                        <table class="table answerTable">
+                            <tr>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>0 = Normal</td>
+                                <td>3 = Mild</td>
+                            </tr>
+                            <tr>
+                                <td>1 = Questionable</td>
+                                <td>4 = Moderate</td>
+                            </tr>
+                            <tr>
+                                <td>2 = Very mild</td>
+                                <td>5 = Severe</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">8 = Excluded (crown,restoration,"bracket")</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">9 = Not recorded (unerupted tooth)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 border border-dark">
+                        <span><b>Dental erosion</b></span>
+                        <table class="table answerTable">
+                            <tr>
+                                <th>Severity</th>
+                                <th style="border:none;"><input type="number" class="inputs" required></th>
+                            </tr>
+                            <tr>
+                                <td colspan="2">0 = No sign of erosion</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">1 = Enamel lesion</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">2 = Dentinal lesion</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">3 = Pulp involvement</td>
+                            </tr>
+                            <tr>
+                                <th colspan="2">No. of teeth</th>
+                            </tr>
+                            <tr>
+                                <td style="border:none; text-align: center;"><input type="number" min="1" max="32" required></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-3 border border-dark">
+                        <span><b>Dental trauma</b></span>
+                        <table class="table answerTable">
+                            <tr>
+                                <th>Status</th>
+                                <th style="border:none;"><input type="number" class="inputs" required></th>
+                            </tr>
+                            <tr>
+                                <td colspan="2">0 = No sign of injury</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">1 = Treated injury</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">2 = Enamel fracture only</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">3 = Enamel and dentine fracture</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">4 = Pulp involvement</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">5 = Missing tooth due to trauma</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">6 = Other damage</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">9 = Excluded tooth</td>
+                            </tr>
+                            <tr>
+                                <th colspan="2">No. of teeth</th>
+                            </tr>
+                            <tr>
+                                <td style="border:none; text-align: center;"><input type="number" min="1" max="32" required></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-3 border border-dark">
+                        <span><b>Oral mucosal lesions</b></span>
+                        <table class="table answerTable">
+                            <tr>
+                                <th>Condition</th>
+                                <th>Location</th>
+                            </tr>
+                            <tr>
+                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required></td>
+                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required></td>
+                            </tr>
+                            <tr>
+                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required></td>
+                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required></td>
+                            </tr>
+                            <tr>
+                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required></td>
+                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required></td>
+                            </tr>
+                        </table>
+                        <table class="answerTable">
+                            </tr>
+                            <tr>
+                                <td>0 = No abnormal condition</td>
+                                <td>0 = Vermillion border</td>
+                            </tr>
+                            <tr>
+                                <td>1 = Ulceration (aphthous herpetic, traumatic)</td>
+                                <td>1 = Commissures</td>
+                            </tr>
+                            <tr>
+                                <td>2 = Acute necrotizing ulcerative gingivitis (ANUG)</td>
+                                <td>2 = Lips</td>
+                            </tr>
+                            <tr>
+                                <td>3 = Candidiasis</td>
+                                <td>3 = Sulci</td>
+                            </tr>
+                            <tr>
+                                <td>4 = Abscess</td>
+                                <td>4 = Buccal mucosa</td>
+                            </tr>
+                            <tr>
+                                <td>8 = Other condition</td>
+                                <td>5 = Floor of mouth</td>
+                            </tr>
+                            <tr>
+                                <td>9 = Not recorded</td>
+                                <td>6 = Tongue</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>7 = Hard/soft palate</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>8 = Alveolar ridges/gingiva</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>9 = Not recorded</td>
+                            </tr>
+                        </table>
+                   
+                    </div>
+                    <div class="col-md-3 border border-dark">
+                        <span><b>Intervention urgency</b></span>
+                        <table class="table answerTable">
+                            <tr>
+                                <th>Severity</th>
+                                <th style="border:none;"><input type="number" class="inputs" required></th>
+                            </tr>
+                            <tr>
+                                <td colspan="2">0 = No curative treatment needed</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">1 = Preventive or routine treatment needed</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">2 = Prompt treatment(including scaling) needed</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">3 = Immediate(urgent) treatment due to pain or infection of dental and/or oral origin</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">4 = Referred for comprehensive evaluation or medical treatment (systemic condition)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </form> 
+        <script>
+            function myfunc(){
+                var text = window.location.hash.substring(1);
+                if(text == ""){
+                    window.location.replace("404.html")
+                }
+            }
+        </script>
     </body>
 </html>

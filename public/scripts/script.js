@@ -14,12 +14,12 @@ var dataNode = dbRef.ref('oralHealthData');
 
 //Login function
 function login() {
-    var email = document.getElementById("uname").value;
-    var password = document.getElementById("psw").value;
+    var email = document.getElementById("email_field").value;
+    var password = document.getElementById("password_field").value;
 
     firebase.auth().signInWithEmailAndPassword(email, password).then(function (value) {
         var id = value.user.uid;
-        window.location.replace("home.html");
+        window.location.replace("home.html#"+email);
     }).catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
