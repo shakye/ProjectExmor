@@ -11,8 +11,11 @@ hr {
     border: 0;
     border-top: 1px solid #c9c7c7;
 }
-.tableRow {
-    
+.navLogo{
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+    border: none;
 }
 .tableLabel {
     width: 40%;
@@ -20,8 +23,9 @@ hr {
 .borderless td, .borderless th {
     border: none;
 }
-.labels{
-    
+.verticalLine{
+    border-left: 1px solid black;
+    height: 100%;
 }
 .inputs{
     border-right-style: hidden;

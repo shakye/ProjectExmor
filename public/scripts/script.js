@@ -26,6 +26,12 @@ function login() {
         alert(errorMessage);
     });
 }
+function loginValidation(){
+  var text = window.location.hash.substring(1);
+  if(text == ""){
+      window.location.replace("404.html")
+  }
+}
 
 //Function to log out the signed in user
 function logout() {
@@ -40,6 +46,9 @@ function logout() {
         console.log(error);
       });
 }
+function randomGen() {
+  return Math.floor(Math.random() * 1000) + 1;
+}
 
 //Function to check whether the user is logged in or not
 function validateUser() {
@@ -52,9 +61,9 @@ function validateUser() {
 
 //Function to submit form data to database
 function submitData() {
-
-    var identificationNo = $('#identificationNo').val();
-    var date = $('#date').val();
+    var identificationNo = randomGen();
+    // $('#identificationNo').val();
+    var date = "$('#date').val();";
     var name = $('#name').val();
     var dateOfBirth = $('#dateOfBirth').val();
     var ageInYears = $('#ageInYears').val();
@@ -63,14 +72,27 @@ function submitData() {
     var ethnicGroup = $('#ethnicGroup').val();
     var otherGroup = $('#otherGroup').val();
     var occupation = $('#occupation').val();
-    var location = $('input[name=location]:checked').val();
-    var community = $('#community').val();
+    var location = "aeqwe";
+    // $('input[name=location]:checked').val();
+    // var community = $('#community').val();
     var enamelFluorosis = $('#enamelFluorosis').val();
     var interventionUrgency = $('#interventionUrgency').val();
+    var dentalErosionSever = $('#dentalErosionSever').val();
+    var dentalErosionNo = $('#dentalErosionNo').val();
+    var dentalTraumaStat = $('#dentalTraumaStat').val();
+    var dentalTraumaNo = $('#dentalTraumaNo').val();
+    var condition1 = $('#condition1').val();
+    var condition2 = $('#condition2').val();
+    var condition3 = $('#condition3').val();
+    var location1 = $('#location1').val();
+    var location2 = $('#location2').val();
+    var location3 = $('#location3').val(); 
+    var tableData = [];
+    var i;
+    for (i = 1; i < 185; i++) {
+      tableData[i] = $('#tableData'+i).val();
+    } 
   
-    var otherGroup = "test";
-    var community = "test";
-    
     dataNode.child(identificationNo).set({
       "identificationNo": identificationNo,
       "date": date,
@@ -80,19 +102,27 @@ function submitData() {
       "yearsInSchool": yearsInSchool,
       "sex": sex,
       "ethnicGroup": ethnicGroup,
-      "otherGroup": otherGroup,
+      // "otherGroup": otherGroup,
       "occupation": occupation,
       "location": location,
-      "community": community,
+      // "community": community,
       "enamelFluorosis": enamelFluorosis,
       "interventionUrgency": interventionUrgency,
       dentalErosion: {
-        severity: 1,
-        noOfTeeth: 30
+        severity: dentalErosionSever,
+        noOfTeeth: dentalErosionNo
       },
       dentalTrauma: {
-        status: 1,
-        noOfTeeth: 30
+        status: dentalTraumaStat,
+        noOfTeeth: dentalTraumaNo
+      },
+      oralMucosal: {
+        condition_1 :condition1,
+        condition_2 :condition2,
+        condition_3 :condition3,
+        location_1 :location1,
+        location_2 :location2,
+        location_3 :location3
       },
       denititionStatus: {
         crown: 1,

@@ -10,11 +10,14 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="stylesheets/style.css">
+        <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+        <script src="scripts/script.js"></script>
     </head>
-    <body onload="myfunc()">
-        <nav class="navbar bg-dark navbar-dark">
+    <body onload="loginValidation()">
+        <nav class="navbar bg-light navbar-light">
                 <!-- Brand -->
-            <a class="navbar-brand" href="#">Humanity First</a>
+            <a class="navbar-brand"><img class="navLogo" src="images/logo.png"></a>
+            <a class="navbar-brand">Humanity First</a>
             
             <!-- Toggler/collapsibe Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -25,13 +28,10 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="www.google.com">Form</a>
+                    <a class="nav-link" href="adminView.html">View Data</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Get Data</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sign out</a>
+                    <a class="nav-link" onclick="logout()">Sign out</a>
                 </li> 
                 </ul>
             </div> 
@@ -53,28 +53,36 @@
                     <table class="table borderless">
                         <tr>
                             <td class="tableLabel"><span class="labels">Full Name<sup>*</sup></span></td>
-                            <td><input class="inputs" type="text" placeholder="Firstname Lastname"></td>
+                            <td><input class="inputs" type="text" placeholder="Firstname Lastname" id="name" required></td>
+                        </tr>
+                        <tr>
+                            <td class="tableLabel"><span class="labels">Gender<sup>*</sup></span></td>
+                            <td><input type="radio" name="gender" value="male" checked style="margin-left:5%;"> Male <input type="radio" name="gender" value="female" style="margin-left:3%;"> Female</td>
                         </tr>
                         <tr>
                             <td class="tableLabel"><span class="labels">Date of birth<sup>*</sup></span> </td>
-                            <td><input type="date" class="inputs" name="bday"></td>
+                            <td><input type="date" class="inputs" name="bday" id="dateOfBirth" required></td>
                         </tr>
                         <tr>
                             <td class="tableLabel"><span class="labels">Age in years<sup>*</sup></span></td>
-                            <td><input type="number" class="inputs"></td>
+                            <td><input type="number" class="inputs" id="ageInYears" required></td>
                         </tr>
                         <tr>
-                            <td class="tableLabel"><span class="labels">Years in school<sup>*</sup></span></td>
-                            <td><input type="number" class="inputs"></td>
+                            <td class="tableLabel"><span class="labels" >Years in school<sup>*</sup></span></td>
+                            <td><input type="number" class="inputs" id="yearsInSchool" required></td>
                         </tr>
                         <tr>
                             <td class="tableLabel"><span class="labels">Occupation<sup>*</sup></span></td>
-                            <td><input type="text" class="inputs"></td>
+                            <td><input type="text" class="inputs" id="occupation" required></td>
+                        </tr>
+                        <tr>
+                            <td class="tableLabel"><span class="labels">Ethnic group<sup>*</sup></span></td>
+                            <td><input type="text" class="inputs" id="ethnicGroup" required></td>
                         </tr>
                         <tr>
                             <td class="tableLabel"><span class="labels">Location<sup>*</sup></span></td>
                             <td>
-                                <select type="select" name="location">
+                                <select type="select" name="location" style="margin-left: 5%;" required>
                                     <option value="urban">Urban</option>
                                     <option value="periurban">Periurban</option>
                                     <option value="rural">Rural</option>
@@ -83,7 +91,7 @@
                         </tr>
                         <tr>
                             <td class="tableLabel"><span class="labels">Other data</span></td>
-                            <td><input type="text" class="inputs"></td>
+                            <td><input type="text" class="inputs" id="otherData"></td>
                         </tr>
                     </table>
                 </div>
@@ -135,37 +143,37 @@
                             </tr>
                             <tr>
                                 <td class="tableInfo">Crown</td>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9" id="tableData1"></th>
+                                <th><input type="number" min="0" max="9" id="tableData2"></th>
+                                <th><input type="number" min="0" max="9" id="tableData3"></th>
+                                <th><input type="number" min="0" max="9" id="tableData4"></th>
+                                <th><input type="number" min="0" max="9" id="tableData5"></th>
+                                <th><input type="number" min="0" max="9" id="tableData6"></th>
+                                <th><input type="number" min="0" max="9" id="tableData7"></th>
+                                <th><input type="number" min="0" max="9" id="tableData8"></th>
+                                <th><input type="number" min="0" max="9" id="tableData9"></th>
+                                <th><input type="number" min="0" max="9" id="tableData10"></th>
+                                <th><input type="number" min="0" max="9" id="tableData11"></th>
+                                <th><input type="number" min="0" max="9" id="tableData12"></th>
+                                <th><input type="number" min="0" max="9" id="tableData13"></th>
+                                <th><input type="number" min="0" max="9" id="tableData14"></th>
                             </tr>
                             <tr>
                                 <td class="tableInfo">Crown</td>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9" id="tableData15"></th>
+                                <th><input type="number" min="0" max="9" id="tableData16"></th>
+                                <th><input type="number" min="0" max="9" id="tableData17"></th>
+                                <th><input type="number" min="0" max="9" id="tableData18"></th>
+                                <th><input type="number" min="0" max="9" id="tableData19"></th>
+                                <th><input type="number" min="0" max="9" id="tableData20"></th>
+                                <th><input type="number" min="0" max="9" id="tableData21"></th>
+                                <th><input type="number" min="0" max="9" id="tableData22"></th>
+                                <th><input type="number" min="0" max="9" id="tableData23"></th>
+                                <th><input type="number" min="0" max="9" id="tableData24"></th>
+                                <th><input type="number" min="0" max="9" id="tableData25"></th>
+                                <th><input type="number" min="0" max="9" id="tableData26"></th>
+                                <th><input type="number" min="0" max="9" id="tableData27"></th>
+                                <th><input type="number" min="0" max="9" id="tableData28"></th>
                             </tr>
                             <tr>
                                     <td class="tableInfo"></td>
@@ -302,37 +310,37 @@
                             </tr>
                             <tr>
                                 <td class="tableInfo">Crown</td>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9" id="tableData29"></th>
+                                <th><input type="number" min="0" max="9" id="tableData30"></th>
+                                <th><input type="number" min="0" max="9" id="tableData31"></th>
+                                <th><input type="number" min="0" max="9" id="tableData32"></th>
+                                <th><input type="number" min="0" max="9" id="tableData33"></th>
+                                <th><input type="number" min="0" max="9" id="tableData34"></th>
+                                <th><input type="number" min="0" max="9" id="tableData35"></th>
+                                <th><input type="number" min="0" max="9" id="tableData36"></th>
+                                <th><input type="number" min="0" max="9" id="tableData37"></th>
+                                <th><input type="number" min="0" max="9" id="tableData38"></th>
+                                <th><input type="number" min="0" max="9" id="tableData39"></th>
+                                <th><input type="number" min="0" max="9" id="tableData40"></th>
+                                <th><input type="number" min="0" max="9" id="tableData41"></th>
+                                <th><input type="number" min="0" max="9" id="tableData42"></th>
                             </tr>
                             <tr>
                                 <td class="tableInfo">Crown</td>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
-                                <th><input type="number" min="0" max="9"></th>
+                                <th><input type="number" min="0" max="9" id="tableData43"></th>
+                                <th><input type="number" min="0" max="9" id="tableData44"></th>
+                                <th><input type="number" min="0" max="9" id="tableData45"></th>
+                                <th><input type="number" min="0" max="9" id="tableData46"></th>
+                                <th><input type="number" min="0" max="9" id="tableData47"></th>
+                                <th><input type="number" min="0" max="9" id="tableData48"></th>
+                                <th><input type="number" min="0" max="9" id="tableData49"></th>
+                                <th><input type="number" min="0" max="9" id="tableData50"></th>
+                                <th><input type="number" min="0" max="9" id="tableData51"></th>
+                                <th><input type="number" min="0" max="9" id="tableData52"></th>
+                                <th><input type="number" min="0" max="9" id="tableData53"></th>
+                                <th><input type="number" min="0" max="9" id="tableData54"></th>
+                                <th><input type="number" min="0" max="9" id="tableData55"></th>
+                                <th><input type="number" min="0" max="9" id="tableData56"></th>
                             </tr>
                             <tr>
                                     <td class="tableInfo"></td>
@@ -367,7 +375,7 @@
                                     <td class="tableInfo">37</td>
                                 </tr>
                         </table> 
-                        <span style=""><b>Gingival bleeding</b></span>  
+                        <span><b>Gingival bleeding</b></span>  
                         <table class="answerTable">
                             <tr>
                                 <th>Scored</th>
@@ -382,9 +390,9 @@
                             </tr>
                         </table> 
                     </div>
-                    <div class="container col-md-4">
+                    <div class="container col-md-4" style="border-left: 1px solid black;">
                         <br>
-                        <span><b>Enamel fluorosis <sup>*</sup></b></span><input class="inputs" type="number" style="width:50%;" required>
+                        <span><b>Enamel fluorosis <sup>*</sup></b></span><input class="inputs" type="number" style="width:50%;" id="enamelFluorosis" required>
                         <table class="table answerTable">
                             <tr>
                                 <th>Status</th>
@@ -419,7 +427,7 @@
                         <table class="table answerTable">
                             <tr>
                                 <th>Severity</th>
-                                <th style="border:none;"><input type="number" class="inputs" required></th>
+                                <th style="border:none;"><input type="number" class="inputs" id="dentalErosionSever" required></th>
                             </tr>
                             <tr>
                                 <td colspan="2">0 = No sign of erosion</td>
@@ -437,7 +445,7 @@
                                 <th colspan="2">No. of teeth</th>
                             </tr>
                             <tr>
-                                <td style="border:none; text-align: center;"><input type="number" min="1" max="32" required></td>
+                                <td style="border:none; text-align: center;"><input type="number" min="1" max="32" id="dentalErosionNo" required></td>
                             </tr>
                         </table>
                     </div>
@@ -446,7 +454,7 @@
                         <table class="table answerTable">
                             <tr>
                                 <th>Status</th>
-                                <th style="border:none;"><input type="number" class="inputs" required></th>
+                                <th style="border:none;"><input type="number" class="inputs" id="dentalTraumaStat" required></th>
                             </tr>
                             <tr>
                                 <td colspan="2">0 = No sign of injury</td>
@@ -476,7 +484,7 @@
                                 <th colspan="2">No. of teeth</th>
                             </tr>
                             <tr>
-                                <td style="border:none; text-align: center;"><input type="number" min="1" max="32" required></td>
+                                <td style="border:none; text-align: center;"><input type="number" min="1" max="32" id="dentalTraumaNo" required></td>
                             </tr>
                         </table>
                     </div>
@@ -488,16 +496,16 @@
                                 <th>Location</th>
                             </tr>
                             <tr>
-                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required></td>
-                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required></td>
+                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required id="condition1"></td>
+                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required id="location1"></td>
                             </tr>
                             <tr>
-                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required></td>
-                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required></td>
+                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required id="condition2"></td>
+                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required id="location2"></td>
                             </tr>
                             <tr>
-                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required></td>
-                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required></td>
+                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required id="condition3"></td>
+                                <td style="border:none; text-align: center;"><input type="number" style="width:30%" required id="location3"></td>
                             </tr>
                         </table>
                         <table class="answerTable">
@@ -550,7 +558,7 @@
                         <table class="table answerTable">
                             <tr>
                                 <th>Severity</th>
-                                <th style="border:none;"><input type="number" class="inputs" required></th>
+                                <th style="border:none;"><input type="number" class="inputs" id="interventionUrgency" required></th>
                             </tr>
                             <tr>
                                 <td colspan="2">0 = No curative treatment needed</td>
@@ -572,14 +580,327 @@
 
                 </div>
             </div>
+            <br><br>
+            <div class="container">
+                <div class="row">
+                    <div class="container col-md-12" style="background-color :white;">
+                        <h3>Dentition status by tooth surface</h3>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="container col-md-8">
+                        <table class="table denitionTable">
+                            <tr>
+                                <td class="tableInfo"></td>
+                                <td class="tableInfo"></td>
+                                <td class="tableInfo"></td>
+                                <td class="tableInfo">55</td>
+                                <td class="tableInfo">54</td>
+                                <td class="tableInfo">53</td>
+                                <td class="tableInfo">52</td>
+                                <td class="tableInfo">51</td>
+                                <td class="tableInfo">61</td>
+                                <td class="tableInfo">62</td>
+                                <td class="tableInfo">63</td>
+                                <td class="tableInfo">64</td>
+                                <td class="tableInfo">65</td>
+                            </tr>
+                            <tr>
+                                <td class="tableInfo"></td>
+                                <td class="tableInfo">17</td>
+                                <td class="tableInfo">16</td>
+                                <td class="tableInfo">15</td>
+                                <td class="tableInfo">14</td>
+                                <td class="tableInfo">13</td>
+                                <td class="tableInfo">12</td>
+                                <td class="tableInfo">11</td>
+                                <td class="tableInfo">21</td>
+                                <td class="tableInfo">22</td>
+                                <td class="tableInfo">23</td>
+                                <td class="tableInfo">24</td>
+                                <td class="tableInfo">25</td>
+                                <td class="tableInfo">26</td>
+                                <td class="tableInfo">27</td>
+                            </tr>
+                            <tr>
+                                <td class="tableInfo">Occ</td>
+                                <th><input type="number" min="0" max="9" id="tableData57"></th>
+                                <th><input type="number" min="0" max="9" id="tableData58"></th>
+                                <th><input type="number" min="0" max="9" id="tableData59"></th>
+                                <th><input type="number" min="0" max="9" id="tableData60"></th>
+                                <th style="background-color:black"></th>
+                                <th style="background-color:black"></th>
+                                <th style="background-color:black"></th>
+                                <th style="background-color:black"></th>
+                                <th style="background-color:black"></th>
+                                <th style="background-color:black"></th>
+                                <th><input type="number" min="0" max="9" id="tableData61"></th>
+                                <th><input type="number" min="0" max="9" id="tableData62"></th>
+                                <th><input type="number" min="0" max="9" id="tableData63"></th>
+                                <th><input type="number" min="0" max="9" id="tableData64"></th>
+                            </tr>
+                            <tr>
+                                <td class="tableInfo">Mes</td>
+                                <th><input type="number" min="0" max="9" id="tableData65"></th>
+                                <th><input type="number" min="0" max="9" id="tableData66"></th>
+                                <th><input type="number" min="0" max="9" id="tableData67"></th>
+                                <th><input type="number" min="0" max="9" id="tableData68"></th>
+                                <th><input type="number" min="0" max="9" id="tableData69"></th>
+                                <th><input type="number" min="0" max="9" id="tableData70"></th>
+                                <th><input type="number" min="0" max="9" id="tableData71"></th>
+                                <th><input type="number" min="0" max="9" id="tableData72"></th>
+                                <th><input type="number" min="0" max="9" id="tableData73"></th>
+                                <th><input type="number" min="0" max="9" id="tableData74"></th>
+                                <th><input type="number" min="0" max="9" id="tableData75"></th>
+                                <th><input type="number" min="0" max="9" id="tableData76"></th>
+                                <th><input type="number" min="0" max="9" id="tableData77"></th>
+                                <th><input type="number" min="0" max="9" id="tableData78"></th>
+                            </tr>
+                            <tr>
+                                <td class="tableInfo">Buc</td>
+                                <th><input type="number" min="0" max="9" id="tableData79"></th>
+                                <th><input type="number" min="0" max="9" id="tableData80"></th>
+                                <th><input type="number" min="0" max="9" id="tableData81"></th>
+                                <th><input type="number" min="0" max="9" id="tableData82"></th>
+                                <th><input type="number" min="0" max="9" id="tableData83"></th>
+                                <th><input type="number" min="0" max="9" id="tableData84"></th>
+                                <th><input type="number" min="0" max="9" id="tableData85"></th>
+                                <th><input type="number" min="0" max="9" id="tableData86"></th>
+                                <th><input type="number" min="0" max="9" id="tableData87"></th>
+                                <th><input type="number" min="0" max="9" id="tableData88"></th>
+                                <th><input type="number" min="0" max="9" id="tableData89"></th>
+                                <th><input type="number" min="0" max="9" id="tableData90"></th>
+                                <th><input type="number" min="0" max="9" id="tableData91"></th>
+                                <th><input type="number" min="0" max="9" id="tableData92"></th>
+                            </tr>
+                            <tr>
+                                <td class="tableInfo">Dis</td>
+                                <th><input type="number" min="0" max="9" id="tableData93"></th>
+                                <th><input type="number" min="0" max="9" id="tableData94"></th>
+                                <th><input type="number" min="0" max="9" id="tableData95"></th>
+                                <th><input type="number" min="0" max="9" id="tableData96"></th>
+                                <th><input type="number" min="0" max="9" id="tableData97"></th>
+                                <th><input type="number" min="0" max="9" id="tableData98"></th>
+                                <th><input type="number" min="0" max="9" id="tableData99"></th>
+                                <th><input type="number" min="0" max="9" id="tableData100"></th>
+                                <th><input type="number" min="0" max="9" id="tableData101"></th>
+                                <th><input type="number" min="0" max="9" id="tableData102"></th>
+                                <th><input type="number" min="0" max="9" id="tableData103"></th>
+                                <th><input type="number" min="0" max="9" id="tableData104"></th>
+                                <th><input type="number" min="0" max="9" id="tableData105"></th>
+                                <th><input type="number" min="0" max="9" id="tableData106"></th>
+                            </tr>
+                            <tr>
+                                    <td class="tableInfo">Oral</td>
+                                <th><input type="number" min="0" max="9" id="tableData107"></th>
+                                <th><input type="number" min="0" max="9" id="tableData108"></th>
+                                <th><input type="number" min="0" max="9" id="tableData109"></th>
+                                <th><input type="number" min="0" max="9" id="tableData110"></th>
+                                <th><input type="number" min="0" max="9" id="tableData111"></th>
+                                <th><input type="number" min="0" max="9" id="tableData112"></th>
+                                <th><input type="number" min="0" max="9" id="tableData113"></th>
+                                <th><input type="number" min="0" max="9" id="tableData114"></th>
+                                <th><input type="number" min="0" max="9" id="tableData115"></th>
+                                <th><input type="number" min="0" max="9" id="tableData116"></th>
+                                <th><input type="number" min="0" max="9" id="tableData117"></th>
+                                <th><input type="number" min="0" max="9" id="tableData118"></th>
+                                <th><input type="number" min="0" max="9" id="tableData119"></th>
+                                <th><input type="number" min="0" max="9" id="tableData120"></th>
+                            </tr>
+                        </table>
+                        <br><br>
+                        <table class="table denitionTable">
+                            <tr>
+                                <td class="tableInfo"></td>
+                                <td class="tableInfo"></td>
+                                <td class="tableInfo"></td>
+                                <td class="tableInfo">85</td>
+                                <td class="tableInfo">84</td>
+                                <td class="tableInfo">83</td>
+                                <td class="tableInfo">82</td>
+                                <td class="tableInfo">81</td>
+                                <td class="tableInfo">71</td>
+                                <td class="tableInfo">72</td>
+                                <td class="tableInfo">73</td>
+                                <td class="tableInfo">74</td>
+                                <td class="tableInfo">75</td>
+                            </tr>
+                            <tr>
+                                <td class="tableInfo"></td>
+                                <td class="tableInfo">47</td>
+                                <td class="tableInfo">46</td>
+                                <td class="tableInfo">45</td>
+                                <td class="tableInfo">44</td>
+                                <td class="tableInfo">43</td>
+                                <td class="tableInfo">42</td>
+                                <td class="tableInfo">41</td>
+                                <td class="tableInfo">31</td>
+                                <td class="tableInfo">32</td>
+                                <td class="tableInfo">33</td>
+                                <td class="tableInfo">34</td>
+                                <td class="tableInfo">35</td>
+                                <td class="tableInfo">36</td>
+                                <td class="tableInfo">37</td>
+                            </tr>
+                            <tr>
+                                <td class="tableInfo">Occ</td>
+                                <th><input type="number" min="0" max="9" id="tableData121"></th>
+                                <th><input type="number" min="0" max="9" id="tableData122"></th>
+                                <th><input type="number" min="0" max="9" id="tableData123"></th>
+                                <th><input type="number" min="0" max="9" id="tableData124"></th>
+                                <th style="background-color:black"></th>
+                                <th style="background-color:black"></th>
+                                <th style="background-color:black"></th>
+                                <th style="background-color:black"></th>
+                                <th style="background-color:black"></th>
+                                <th style="background-color:black"></th>
+                                <th><input type="number" min="0" max="9" id="tableData125"></th>
+                                <th><input type="number" min="0" max="9" id="tableData126"></th>
+                                <th><input type="number" min="0" max="9" id="tableData127"></th>
+                                <th><input type="number" min="0" max="9" id="tableData128"></th>
+                            </tr>
+                            <tr>
+                                <td class="tableInfo">Mes</td>
+                                <th><input type="number" min="0" max="9" id="tableData129"></th>
+                                <th><input type="number" min="0" max="9" id="tableData130"></th>
+                                <th><input type="number" min="0" max="9" id="tableData131"></th>
+                                <th><input type="number" min="0" max="9" id="tableData132"></th>
+                                <th><input type="number" min="0" max="9" id="tableData133"></th>
+                                <th><input type="number" min="0" max="9" id="tableData134"></th>
+                                <th><input type="number" min="0" max="9" id="tableData135"></th>
+                                <th><input type="number" min="0" max="9" id="tableData136"></th>
+                                <th><input type="number" min="0" max="9" id="tableData137"></th>
+                                <th><input type="number" min="0" max="9" id="tableData138"></th>
+                                <th><input type="number" min="0" max="9" id="tableData139"></th>
+                                <th><input type="number" min="0" max="9" id="tableData140"></th>
+                                <th><input type="number" min="0" max="9" id="tableData141"></th>
+                                <th><input type="number" min="0" max="9" id="tableData142"></th>
+                            </tr>
+                            <tr>
+                                <td class="tableInfo">Buc</td>
+                                <th><input type="number" min="0" max="9" id="tableData143"></th>
+                                <th><input type="number" min="0" max="9" id="tableData144"></th>
+                                <th><input type="number" min="0" max="9" id="tableData145"></th>
+                                <th><input type="number" min="0" max="9" id="tableData146"></th>
+                                <th><input type="number" min="0" max="9" id="tableData147"></th>
+                                <th><input type="number" min="0" max="9" id="tableData148"></th>
+                                <th><input type="number" min="0" max="9" id="tableData149"></th>
+                                <th><input type="number" min="0" max="9" id="tableData150"></th>
+                                <th><input type="number" min="0" max="9" id="tableData151"></th>
+                                <th><input type="number" min="0" max="9" id="tableData152"></th>
+                                <th><input type="number" min="0" max="9" id="tableData153"></th>
+                                <th><input type="number" min="0" max="9" id="tableData154"></th>
+                                <th><input type="number" min="0" max="9" id="tableData155"></th>
+                                <th><input type="number" min="0" max="9" id="tableData156"></th>
+                            </tr>
+                            <tr>
+                                <td class="tableInfo">Dis</td>
+                                <th><input type="number" min="0" max="9" id="tableData157"></th>
+                                <th><input type="number" min="0" max="9" id="tableData158"></th>
+                                <th><input type="number" min="0" max="9" id="tableData159"></th>
+                                <th><input type="number" min="0" max="9" id="tableData160"></th>
+                                <th><input type="number" min="0" max="9" id="tableData161"></th>
+                                <th><input type="number" min="0" max="9" id="tableData162"></th>
+                                <th><input type="number" min="0" max="9" id="tableData163"></th>
+                                <th><input type="number" min="0" max="9" id="tableData164"></th>
+                                <th><input type="number" min="0" max="9" id="tableData165"></th>
+                                <th><input type="number" min="0" max="9" id="tableData166"></th>
+                                <th><input type="number" min="0" max="9" id="tableData167"></th>
+                                <th><input type="number" min="0" max="9" id="tableData168"></th>
+                                <th><input type="number" min="0" max="9" id="tableData169"></th>
+                                <th><input type="number" min="0" max="9" id="tableData170"></th>
+                            </tr>
+                            <tr>
+                                    <td class="tableInfo">Oral</td>
+                                <th><input type="number" min="0" max="9" id="tableData171"></th>
+                                <th><input type="number" min="0" max="9" id="tableData172"></th>
+                                <th><input type="number" min="0" max="9" id="tableData173"></th>
+                                <th><input type="number" min="0" max="9" id="tableData174"></th>
+                                <th><input type="number" min="0" max="9" id="tableData175"></th>
+                                <th><input type="number" min="0" max="9" id="tableData176"></th>
+                                <th><input type="number" min="0" max="9" id="tableData177"></th>
+                                <th><input type="number" min="0" max="9" id="tableData178"></th>
+                                <th><input type="number" min="0" max="9" id="tableData179"></th>
+                                <th><input type="number" min="0" max="9" id="tableData180"></th>
+                                <th><input type="number" min="0" max="9" id="tableData181"></th>
+                                <th><input type="number" min="0" max="9" id="tableData182"></th>
+                                <th><input type="number" min="0" max="9" id="tableData183"></th>
+                                <th><input type="number" min="0" max="9" id="tableData184"></th>
+                            </tr>
+                        </table>     
+                    </div>
+                    <div class="container col-md-4">
+                        <table class="table answerTable">
+                            <tr>
+                                <th>Primary teeth</th>
+                                <th>Permanent teeth</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>A</td>
+                                <td>0 = Sound</td>
+                            </tr>
+                            <tr>
+                                <td>B</td>
+                                <td>1 = Caries</td>
+                            </tr>
+                            <tr>
+                                <td>C</td>
+                                <td>2 = Filled w/caries</td>
+                            </tr>
+                            <tr>
+                                <td>D</td>
+                                <td>3 = Filled, no caries </td>
+                            </tr>
+                            <tr>
+                                <td>E</td>
+                                <td>4 = Missing due to caries</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>5 = Missing for any other reason</td>
+                            </tr>
+                            <tr>
+                                <td>F</td>
+                                <td>6 = Fissure sealant</td>
+                            </tr>
+                            <tr>
+                                <td>G</td>
+                                <td>7 = Fixed dental prosthesis/crown,abutment,veneer</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>8 = Unerupted</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>9 = Not recorded</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="container">
+                <div class="row">
+                    <div class= "container" style="text-align:center">
+                        <input type="submit" class="btn btn-success col-md-12" style="border-radius: 13px;" value="Submit" onclick="submitData()">
+                    </div>
+                </div>
+            </div>
         </form> 
-        <script>
-            function myfunc(){
-                var text = window.location.hash.substring(1);
-                if(text == ""){
-                    window.location.replace("404.html")
-                }
-            }
-        </script>
+        <!-- Footer -->
+        <br>
+        <footer class="page-footer font-small blue">
+            <div class="footer-copyright text-center py-3">© 2018 Copyright:
+                <a href="https://www.fiverr.com/s2/2eeb646318?utm_source=CopyLink_Mobile"> Shakye</a>
+            </div>
+        </footer>
     </body>
 </html>
