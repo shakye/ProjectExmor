@@ -27,12 +27,22 @@
       <input type="password" id="password_field" class="form-control" placeholder="Password" required>
       <div class="checkbox mb-3">
       </div>
-      <button onclick="login()" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <button id="loginBtn" onclick="login()" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       <p class="mt-5 mb-3 text-muted">&copy; Copyright 2018</p>
     </div>	
       
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
     <script src="scripts/script.js"></script>
-      
+    
+    <script>
+      var submitButton = document.getElementById("loginBtn");
+      // Listen for the enter key press.
+      document.body.addEventListener('keyup', function (e) {
+        if (e.keyCode == 13) {
+          // Simulate clicking on the submit button.
+          submitButton.click();
+        }
+      });
+    </script>
   </body>
 </html>
