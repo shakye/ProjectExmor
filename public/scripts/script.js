@@ -1,5 +1,6 @@
 // Initialize Firebase
 var email ="";
+var entries = [];
 
 var config = {
     apiKey: "AIzaSyB7wo51xy2h4_WGXJ_K7SPN4In5R6tb_-A",
@@ -22,43 +23,54 @@ function login() {
         var id = value.user.uid;
         window.location.replace("home.html");
     }).catch(function(error) {
+        window.location.replace("404.html");
+    }).catch(function (error) {
         var errorCode = error.code;
         var errorMessage = error.message;
         alert(errorMessage);
     });
 }
+
 function getUsername(){
   this.email = firebase.getAuth().password.email;
   window.alert("hello");
 }
 
-function returnHome(){
-  window.location.replace("home.html");
+function returnHome() {
+    window.location.replace("home.html");
+}
+
+function loginValidation() {
+    var text = window.location.hash.substring(1);
+    if (text == "") {
+        window.location.replace("404.html")
+    }
 }
 
 //Function to log out the signed in user
 function logout() {
     firebase
-      .auth()
-      .signOut()
-      .then(function () {
-        // Sign-out successful.
-        window.location.href = "index.html";
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+        .auth()
+        .signOut()
+        .then(function () {
+            // Sign-out successful.
+            window.location.href = "index.html";
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }
+
 function randomGen() {
-  return Math.floor(Math.random() * 1000) + 1;
+    return Math.floor(Math.random() * 1000) + 1;
 }
 
 //Function to check whether the user is logged in or not
 function validateUser() {
     firebase.auth().onAuthStateChanged(function (user) {
-      if (!user) {
-        window.location.href = "index.html";
-      }
+        if (!user) {
+            window.location.href = "index.html";
+        }
     });
 }
 
@@ -71,11 +83,11 @@ function submitData() {
     var dateOfBirth = $('#dateOfBirth').val();
     var ageInYears = $('#ageInYears').val();
     var yearsInSchool = $('#yearsInSchool').val();
-    var sex = $('input[name=gender]:checked').val(); 
+    var sex = $('input[name=gender]:checked').val();
     var ethnicGroup = $('#ethnicGroup').val();
     var otherGroup = $('#otherGroup').val();
     var occupation = $('#occupation').val();
-    var location = "aeqwe";
+    var location = $('#location').find(":selected").val();
     // $('input[name=location]:checked').val();
     // var community = $('#community').val();
     var enamelFluorosis = $('#enamelFluorosis').val();
@@ -89,13 +101,13 @@ function submitData() {
     var condition3 = $('#condition3').val();
     var location1 = $('#location1').val();
     var location2 = $('#location2').val();
-    var location3 = $('#location3').val(); 
+    var location3 = $('#location3').val();
     var tableData = [];
     var i;
-    for (i = 1; i < 185; i++) {
-      tableData[i] = $('#tableData'+i).val();
-    } 
-  
+    for (i = 0; i < 184; i++) {
+        tableData.push($('#tableData' + (i+1)).val());
+    }
+
     dataNode.child(identificationNo).set({
       "identificationNo": identificationNo,
       "date": date,
@@ -130,5 +142,192 @@ function submitData() {
       tableDataArray : {
         crown: tableData
       },
+        "identificationNo": identificationNo,
+        "date": date,
+        "name": name,
+        "dateOfBirth": dateOfBirth,
+        "ageInYears": ageInYears,
+        "yearsInSchool": yearsInSchool,
+        "sex": sex,
+        "ethnicGroup": ethnicGroup,
+        // "otherGroup": otherGroup,
+        "occupation": occupation,
+        "location": location,
+        // "community": community,
+        "enamelFluorosis": enamelFluorosis,
+        "interventionUrgency": interventionUrgency,
+        dentalErosion: {
+            severity: dentalErosionSever,
+            noOfTeeth: dentalErosionNo
+        },
+        dentalTrauma: {
+            status: dentalTraumaStat,
+            noOfTeeth: dentalTraumaNo
+        },
+        oralMucosal: {
+            condition_1: condition1,
+            condition_2: condition2,
+            condition_3: condition3,
+            location_1: location1,
+            location_2: location2,
+            location_3: location3
+        },
+        denititionStatus: {
+            crown: 1,
+            crown: 1
+        },
+        periodontalStatus: {
+            crown: 1,
+            crown: 1
+        },
+        denititionStatusByToothSurface: {
+            crown: 1,
+            crown: 1
+        }
     })
-  }
+}
+
+//getEntries();
+
+function getEntries(isEntries) {
+
+    var dbRef = firebase.database().ref('oralHealthData');
+    dbRef.on('value', function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+            entries.push(childSnapshot.val());
+        });
+        console.log("SIZE: " + entries.length);
+
+        if (isEntries) {
+            populateTable();
+        } else {
+            readData();
+        }
+
+    });
+}
+
+//Retrieves data from database
+function readData() {
+    //var userId = firebase.auth().currentUser.uid;
+
+    var childData = entries[index - 1];
+    var identificationNo = childData.identificationNo;
+
+    if (childData != null) {
+        var date = childData.date;
+        var name = childData.name;
+        var dateOfBirth = childData.dateOfBirth;
+        var ageInYears = childData.ageInYears;
+        var yearsInSchool = childData.yearsInSchool;
+        var sex = childData.sex;
+        var ethnicGroup = childData.ethnicGroup;
+        var otherGroup = childData.otherGroup;
+        var occupation = childData.occupation;
+        var location = childData.location;
+        var community = childData.community;
+        var enamelFluorosis = childData.enamelFluorosis;
+        var interventionUrgency = childData.interventionUrgency;
+        var dentalErosion = childData.dentalErosion;
+        var dentalTrauma = childData.dentalTrauma;
+        var denititionStatus = childData.denititionStatus;
+        var periodontalStatus = childData.periodontalStatus;
+        var denititionStatusByToothSurface = childData.denititionStatusByToothSurface;
+        var oralMucoSal = childData.oralMucosal;
+        var tableDataArray = childData.tableDataArray.crown;
+
+        document.getElementById("name").value = name;
+        document.getElementById("name").disabled = true;
+        if (sex == "male"){
+            document.getElementById("male").checked = true;
+        }else {
+            document.getElementById("female").checked = true;
+        }
+        document.getElementById("dateOfBirth").value = dateOfBirth;
+        document.getElementById("ageInYears").value = ageInYears;
+        document.getElementById("yearsInSchool").value = yearsInSchool;
+        document.getElementById("occupation").value = occupation;
+        document.getElementById("ethnicGroup").value = ethnicGroup;
+        document.getElementById("location").value = location;
+        document.getElementById("enamelFluorosis").value = enamelFluorosis;
+        document.getElementById("interventionUrgency").value = interventionUrgency;
+        document.getElementById("dentalErosionNo").value = dentalErosion.noOfTeeth;
+        document.getElementById("dentalErosionSever").value = dentalErosion.severity;
+        document.getElementById("dentalTraumaNo").value = dentalTrauma.noOfTeeth;
+        document.getElementById("dentalTraumaStat").value = dentalTrauma.status;
+        document.getElementById("condition1").value = oralMucoSal.condition_1;
+        document.getElementById("condition2").value = oralMucoSal.condition_2;
+        document.getElementById("condition3").value = oralMucoSal.condition_3;
+        document.getElementById("location1").value = oralMucoSal.location_1;
+        document.getElementById("location2").value = oralMucoSal.location_2;
+        document.getElementById("location3").value = oralMucoSal.location_3;
+        document.getElementById("otherData").value = otherGroup;
+
+
+        for (var x = 0; x <= tableDataArray.length; x++) {
+            var element = document.getElementById("tableData" + (x + 1));
+            var value = tableDataArray[x];
+            if (element != null)
+                element.value = tableDataArray[x];
+
+            console.log((x + 1) + " => " + x);
+        }
+
+        disableFields();
+
+
+    }
+}
+
+function populateTable() {
+    var table = document.getElementById("usertable");
+
+    $("#usertable").empty();
+
+    table.classList.add("table");
+    table.classList.add("table-hover");
+
+    var header = table.createTHead();
+    var row = header.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML = "<b>Name</b>";
+    cell2.innerHTML = "<b>Identification Number</b>";
+    row.id = "headerid";
+
+    for (i = 0; i < entries.length; i++) {
+
+        var childData = entries[i];
+
+        var row = table.insertRow(i + 1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.innerHTML = childData.name;
+        cell2.innerHTML = childData.identificationNo;
+    }
+
+    onClickListener();
+}
+
+function onClickListener() {
+    $(document).ready(function () {
+
+        $('#usertable tr').not('#headerid').click(function () {
+            var name = "hi";
+            if (name) {
+                localStorage.setItem("index", $(this).index());
+                window.location.href = "viewentry.html";
+                //alert($(this).index());
+            }
+        });
+
+    });
+}
+
+function disableFields() {
+    var form = document.getElementById("viewDataForm");
+    var elements = form.elements;
+    for (var i = 0, len = elements.length; i < len; ++i) {
+        elements[i].readOnly = true;
+    }
+}
