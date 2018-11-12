@@ -4,7 +4,7 @@
         <meta charset="utf-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>
-            Home
+            Data View
         </title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -13,10 +13,10 @@
         <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
         <script src="scripts/script.js"></script>
     </head>
-    <body>
+    <body onload="getUsername()">
         <nav class="navbar bg-light navbar-light">
                 <!-- Brand -->
-            <a class="navbar-brand"><img class="navLogo" src="images/logo.png"></a>
+            <a class="navbar-brand" onclick="returnHome()"><img class="navLogo" src="images/logo.png"></a>
             <a class="navbar-brand">Humanity First</a>
             
             <!-- Toggler/collapsibe Button -->
@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="adminView.html">View Data</a>
+                    <a class="nav-link" href="home.html" onclick="returnHome()">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" onclick="logout()">Sign out</a>
@@ -51,6 +51,9 @@
             <div class="row">
                 <div class="container">
                     <table class="table borderless">
+                        <tr>
+                            <td class="tableLabel"><span class="labels" style="color:green;">Examiner :</span><span style="margin-left: 3%; color:green;" id="examinerName">User1</span></td>
+                        </tr>
                         <tr>
                             <td class="tableLabel"><span class="labels" style="color:green;">Date filled :</span><span style="margin-left: 3%; color:green;" id="dateFilled">DD/MM/YYYY</span></td>
                             <td class="tableLabel"><span class="labels" style="color:green;">Identification No :</span><span style="margin-left: 3%; color:green;" id="randomNo">1212</span></td>
