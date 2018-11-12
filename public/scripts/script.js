@@ -127,17 +127,8 @@ function submitData() {
         location_2 :location2,
         location_3 :location3
       },
-      denititionStatus: {
-        crown: 1,
-        crown: 1
-      },
-      periodontalStatus: {
-        crown: 1,
-        crown: 1
-      },
-      denititionStatusByToothSurface: {
-        crown: 1,
-        crown: 1
+      tableDataArray : {
+        crown: tableData
       },
     })
   }
