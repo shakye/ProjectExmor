@@ -1,4 +1,6 @@
 // Initialize Firebase
+var email ="";
+
 var config = {
     apiKey: "AIzaSyB7wo51xy2h4_WGXJ_K7SPN4In5R6tb_-A",
     authDomain: "projecthamidasif-83639.firebaseapp.com",
@@ -11,26 +13,27 @@ firebase.initializeApp(config);
 
 var dbRef = firebase.database();
 var dataNode = dbRef.ref('oralHealthData');
-
 //Login function
 function login() {
-    var email = document.getElementById("email_field").value;
+    this.email= document.getElementById("email_field").value;
     var password = document.getElementById("password_field").value;
 
-    firebase.auth().signInWithEmailAndPassword(email, password).then(function (value) {
+    firebase.auth().signInWithEmailAndPassword(this.email, password).then(function (value) {
         var id = value.user.uid;
-        window.location.replace("home.html#"+email);
+        window.location.replace("home.html");
     }).catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
         alert(errorMessage);
     });
 }
-function loginValidation(){
-  var text = window.location.hash.substring(1);
-  if(text == ""){
-      window.location.replace("404.html")
-  }
+function getUsername(){
+  this.email = firebase.getAuth().password.email;
+  window.alert("hello");
+}
+
+function returnHome(){
+  window.location.replace("home.html");
 }
 
 //Function to log out the signed in user
