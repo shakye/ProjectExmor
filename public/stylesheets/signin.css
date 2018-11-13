@@ -43,3 +43,8 @@ body {
   border-top-right-radius: 0;
 }
 .top-buffer { margin-top:20px; }
+
+#loginStat{
+  font-style: italic;
+  display: none;
+}

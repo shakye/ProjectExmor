@@ -5,6 +5,9 @@ button:focus {
     outline: none;
     border-color: blue;
 }
+body{
+    background-color: #e9f2f8;
+}
 .top-buffer { margin-top:3%; }
 hr {
     margin: 30px -20px 20px;
@@ -28,9 +31,12 @@ hr {
     height: 100%;
 }
 .inputs{
+    background-color: #e9f2f8;
+    border-color: #d8d8d8;
     border-right-style: hidden;
     border-top-style: hidden;
     border-left-style: hidden;
+    border-radius: 6px;
     margin-left: 5%;
     width: 80%;
     display: inline-block;
@@ -56,4 +62,12 @@ hr {
 }
 .answerTable th{
     border-top: none;
+}
+#usertable tr:hover {
+    background-color: lightgreen;
+    cursor: pointer;
+    color: white;
+}
+#headerid {
+    pointer-events: none;
 }
