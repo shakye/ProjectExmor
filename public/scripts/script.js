@@ -23,7 +23,8 @@ function login() {
         var id = value.user.uid;
         window.location.replace("home.html");
     }).catch(function(error) {
-        window.location.replace("404.html");
+        document.getElementById("loginStat").style.display = "block";
+        // window.location.replace("404.html");
     }).catch(function (error) {
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -142,48 +143,6 @@ function submitData() {
       tableDataArray : {
         crown: tableData
       },
-        "identificationNo": identificationNo,
-        "date": date,
-        "name": name,
-        "dateOfBirth": dateOfBirth,
-        "ageInYears": ageInYears,
-        "yearsInSchool": yearsInSchool,
-        "sex": sex,
-        "ethnicGroup": ethnicGroup,
-        // "otherGroup": otherGroup,
-        "occupation": occupation,
-        "location": location,
-        // "community": community,
-        "enamelFluorosis": enamelFluorosis,
-        "interventionUrgency": interventionUrgency,
-        dentalErosion: {
-            severity: dentalErosionSever,
-            noOfTeeth: dentalErosionNo
-        },
-        dentalTrauma: {
-            status: dentalTraumaStat,
-            noOfTeeth: dentalTraumaNo
-        },
-        oralMucosal: {
-            condition_1: condition1,
-            condition_2: condition2,
-            condition_3: condition3,
-            location_1: location1,
-            location_2: location2,
-            location_3: location3
-        },
-        denititionStatus: {
-            crown: 1,
-            crown: 1
-        },
-        periodontalStatus: {
-            crown: 1,
-            crown: 1
-        },
-        denititionStatusByToothSurface: {
-            crown: 1,
-            crown: 1
-        }
     })
 }
 
