@@ -104,15 +104,9 @@ function validateUser() {
 
 //Function to submit form data to database
 function submitData() {
-<<<<<<< HEAD
+    document.getElementById("successToast").style.display = "block";
     var identificationNo = newKey;
     var date = getCurrentDate();
-=======
-    document.getElementById("successToast").style.display = "block";
-    var identificationNo = randomGen();
-    // $('#identificationNo').val();
-    var date = "$('#date').val();";
->>>>>>> master
     var name = $('#name').val();
     var dateOfBirth = $('#dateOfBirth').val();
     var ageInYears = $('#ageInYears').val();
@@ -341,6 +335,8 @@ function registerUser(){
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(function (user) {
             console.log("User " + user.uid + " created successfully!");
+            document.getElementById("userCreated").style.display = "block";
+            document.getElementById("loginBtn").style.display = "block";
             userNode.child(user.user.uid).set({
                 "name": name,
                 "email": email,
