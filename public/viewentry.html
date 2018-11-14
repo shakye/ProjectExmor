@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html >
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
     <script src="scripts/script.js" ></script>
-    <link rel="stylesheet" href="stylesheets/style.css">
     <script>
         var index = localStorage.getItem("index");
         getEntries(false);
@@ -62,7 +63,7 @@
                 </tr>
                 <tr>
                     <td class="tableLabel"><span class="labels">Full Name<sup>*</sup></span></td>
-                    <td><input class="inputs" type="text" placeholder="Firstname Lastname" id="name" required></td>
+                    <td><input class="inputs" type="text" id="name" required></td>
                 </tr>
                 <tr>
                     <td class="tableLabel"><span class="labels">Gender<sup>*</sup></span></td>
