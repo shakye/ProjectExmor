@@ -104,8 +104,9 @@ function validateUser() {
 
 //Function to submit form data to database
 function submitData() {
-    document.getElementById("successToast").style.display = "block";
     var identificationNo = newKey;
+    var date = getCurrentDate();
+    document.getElementById("successToast").style.display = "block";
     var date = getCurrentDate();
     var name = $('#name').val();
     var dateOfBirth = $('#dateOfBirth').val();
@@ -171,7 +172,9 @@ function submitData() {
       tableDataArray : {
         crown: tableData
       },
-    })
+    });
+
+    $('#form')[0].reset();
 }
 
 //getEntries();
