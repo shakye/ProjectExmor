@@ -16,6 +16,9 @@ var dbRef = firebase.database();
 var dataNode = dbRef.ref('oralHealthData');
 var userNode = dbRef.ref('users');
 
+var newKey = "";
+var username = "";
+
 //Login function
 function login() {
     this.email= document.getElementById("email_field").value;
@@ -73,15 +76,36 @@ function validateUser() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (!user) {
             window.location.href = "index.html";
+        }else{
+            var date = document.getElementById('dateLable');
+            date.innerText = " "+ getCurrentDate();
+
+            var examiner = document.getElementById('userN');
+            var identificationNo = document.getElementById('randomId');
+
+            console.log(user.uid);
+            
+            newKey = firebase.database().ref().child('users').push().key;
+            console.log(newKey);
+
+            var ref = userNode.child(user.uid);
+            ref.on("value", function (snapshot) {
+                var user = snapshot.val();
+                username = user.name;
+                console.log(username);
+                examiner.innerText = " " + username;
+                identificationNo.innerText = " " + newKey; 
+            }, function (error) {
+                console.log("Error: " + error.code);
+            });    
         }
     });
 }
 
 //Function to submit form data to database
 function submitData() {
-    var identificationNo = randomGen();
-    // $('#identificationNo').val();
-    var date = "$('#date').val();";
+    var identificationNo = newKey;
+    var date = getCurrentDate();
     var name = $('#name').val();
     var dateOfBirth = $('#dateOfBirth').val();
     var ageInYears = $('#ageInYears').val();
@@ -91,8 +115,6 @@ function submitData() {
     var otherGroup = $('#otherGroup').val();
     var occupation = $('#occupation').val();
     var location = $('#location').find(":selected").val();
-    // $('input[name=location]:checked').val();
-    // var community = $('#community').val();
     var enamelFluorosis = $('#enamelFluorosis').val();
     var interventionUrgency = $('#interventionUrgency').val();
     var dentalErosionSever = $('#dentalErosionSever').val();
@@ -111,21 +133,24 @@ function submitData() {
         tableData.push($('#tableData' + (i+1)).val());
     }
 
-    dataNode.child(identificationNo).set({
-      "identificationNo": identificationNo,
-      "date": date,
+
+    
+
+
+    dataNode.child(newKey).set({
+      "identificationNo": newKey,
+      "date": getCurrentDate(),
       "name": name,
       "dateOfBirth": dateOfBirth,
       "ageInYears": ageInYears,
       "yearsInSchool": yearsInSchool,
       "sex": sex,
       "ethnicGroup": ethnicGroup,
-      // "otherGroup": otherGroup,
       "occupation": occupation,
       "location": location,
-      // "community": community,
       "enamelFluorosis": enamelFluorosis,
       "interventionUrgency": interventionUrgency,
+      "examiner":username,
       dentalErosion: {
         severity: dentalErosionSever,
         noOfTeeth: dentalErosionNo
@@ -177,6 +202,7 @@ function readData() {
 
     if (childData != null) {
         var date = childData.date;
+        var examiner = childData.examiner;
         var name = childData.name;
         var dateOfBirth = childData.dateOfBirth;
         var ageInYears = childData.ageInYears;
@@ -224,6 +250,10 @@ function readData() {
         document.getElementById("location3").value = oralMucoSal.location_3;
         document.getElementById("otherData").value = otherGroup;
 
+
+        document.getElementById("dateLable").innerText = " " + date;
+        document.getElementById("userN").innerText = " " + examiner;
+        document.getElementById("randomId").innerText = " " + identificationNo;
 
         for (var x = 0; x <= tableDataArray.length; x++) {
             var element = document.getElementById("tableData" + (x + 1));
