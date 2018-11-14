@@ -39,7 +39,7 @@
         <!-- End of NavBar -->
         <!-- Body -->
         <br><br>
-        <form>
+        <form onsubmit="return submitData()">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -52,8 +52,15 @@
                 <div class="container">
                     <table class="table borderless">
                         <tr>
+                            <td class="tableLabel"><span class="labels" style="color:green;">Date :</span><span class="labels" id="dateLable"></span></td>
+                            <td class="tableLabel"><span class="labels" style="color:green;">Examiner :</span><span class="labels" id="userN"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="tableLabel"><span class="labels" style="color:green;">Identification No. :</span><span class="labels" id="randomId"></span></td>
+                        </tr>
+                        <tr>
                             <td class="tableLabel"><span class="labels">Full Name<sup>*</sup></span></td>
-                            <td><input class="inputs" type="text" placeholder="Firstname Lastname" id="name" required></td>
+                            <td><input class="inputs" type="text" id="name" required></td>
                         </tr>
                         <tr>
                             <td class="tableLabel"><span class="labels">Gender<sup>*</sup></span></td>
@@ -890,7 +897,7 @@
             <div class="container">
                 <div class="row">
                     <div class= "container" style="text-align:center">
-                        <input type="submit" class="btn btn-success col-md-12" style="border-radius: 13px;" value="Submit" onclick="submitData()">
+                        <input type="submit" class="btn btn-success col-md-12" style="border-radius: 13px;" value="Submit" >
                     </div>
                 </div>
             </div>
