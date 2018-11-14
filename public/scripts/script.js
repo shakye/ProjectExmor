@@ -79,6 +79,7 @@ function validateUser() {
 
 //Function to submit form data to database
 function submitData() {
+    document.getElementById("successToast").style.display = "block";
     var identificationNo = randomGen();
     // $('#identificationNo').val();
     var date = "$('#date').val();";
