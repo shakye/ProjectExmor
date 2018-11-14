@@ -104,8 +104,15 @@ function validateUser() {
 
 //Function to submit form data to database
 function submitData() {
+<<<<<<< HEAD
     var identificationNo = newKey;
     var date = getCurrentDate();
+=======
+    document.getElementById("successToast").style.display = "block";
+    var identificationNo = randomGen();
+    // $('#identificationNo').val();
+    var date = "$('#date').val();";
+>>>>>>> master
     var name = $('#name').val();
     var dateOfBirth = $('#dateOfBirth').val();
     var ageInYears = $('#ageInYears').val();
