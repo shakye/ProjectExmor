@@ -3,17 +3,19 @@ var email ="";
 var entries = [];
 
 var config = {
-    apiKey: "AIzaSyB7wo51xy2h4_WGXJ_K7SPN4In5R6tb_-A",
-    authDomain: "projecthamidasif-83639.firebaseapp.com",
-    databaseURL: "https://projecthamidasif-83639.firebaseio.com",
-    projectId: "projecthamidasif-83639",
-    storageBucket: "projecthamidasif-83639.appspot.com",
-    messagingSenderId: "146110704053"
+  apiKey: "AIzaSyB7wo51xy2h4_WGXJ_K7SPN4In5R6tb_-A",
+  authDomain: "projecthamidasif-83639.firebaseapp.com",
+  databaseURL: "https://projecthamidasif-83639.firebaseio.com",
+  projectId: "projecthamidasif-83639",
+  storageBucket: "projecthamidasif-83639.appspot.com",
+  messagingSenderId: "146110704053"
 };
 firebase.initializeApp(config);
 
 var dbRef = firebase.database();
 var dataNode = dbRef.ref('oralHealthData');
+var userNode = dbRef.ref('users');
+
 //Login function
 function login() {
     this.email= document.getElementById("email_field").value;
@@ -290,3 +292,44 @@ function disableFields() {
         elements[i].readOnly = true;
     }
 }
+
+function registerUser(){
+    var name = $('#username').val();
+    var email = $('#useremail').val();
+    var password = $('#password').val();
+    var cpassword = $('#password').val();
+    var accountType = $('#accountType').val();
+    
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(function (user) {
+            console.log("User " + user.uid + " created successfully!");
+            userNode.child(user.user.uid).set({
+                "name": name,
+                "email": email,
+                "accountType": accountType,
+                "uid":user.user.uid
+            })
+            return user;
+        }).catch(function (error) {
+            console.log(error);
+        });   
+}
+
+function getCurrentDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+  
+    if (dd < 10) {
+      dd = '0' + dd
+    }
+  
+    if (mm < 10) {
+      mm = '0' + mm
+    }
+  
+    today = yyyy + '-' + mm + '-' + dd;
+    return today;
+  }
