@@ -96,14 +96,14 @@ function validateUser() {
 }
 
 //Function to submit form data to database
-function submitData() {
+function submitData(isHome) {
+    entries = [];
     var identificationNo = newKey;
     var date = getCurrentDate();
     document.getElementById("successToast").style.display = "block";
     var date = getCurrentDate();
     var name = $('#name').val();
     var dateOfBirth = $('#dateOfBirth').val();
-    var ageInYears = $('#ageInYears').val();
     var yearsInSchool = $('#yearsInSchool').val();
     var sex = $('input[name=gender]:checked').val();
     var ethnicGroup = $('#ethnicGroup').val();
@@ -129,7 +129,9 @@ function submitData() {
     }
 
 
-    
+    if(!isHome){
+        newKey = currentIdentificationNo;
+    }
 
 
     dataNode.child(newKey).set({
@@ -137,7 +139,6 @@ function submitData() {
       "date": getCurrentDate(),
       "name": name,
       "dateOfBirth": dateOfBirth,
-      "ageInYears": ageInYears,
       "yearsInSchool": yearsInSchool,
       "sex": sex,
       "ethnicGroup": ethnicGroup,
@@ -167,12 +168,16 @@ function submitData() {
       },
     });
 
-    $('#form')[0].reset();
+    if(isHome) {
+        $('#form')[0].reset();
+    }
 }
 
 //getEntries();
 
 function getEntries(isEntries) {
+
+    entries = [];
 
     var dbRef = firebase.database().ref('oralHealthData');
     dbRef.on('value', function (snapshot) {
@@ -188,21 +193,29 @@ function getEntries(isEntries) {
         }
 
     });
+
+    dbRef.on('child_changed', function(snapshot) {
+        console.log("Data changed");
+        entries = [];
+        readData();
+    });
 }
+
+var currentIdentificationNo;
 
 //Retrieves data from database
 function readData() {
     //var userId = firebase.auth().currentUser.uid;
 
     var childData = entries[index - 1];
-    var identificationNo = childData.identificationNo;
+    if (currentIdentificationNo == "" || currentIdentificationNo == null)
+        currentIdentificationNo = childData.identificationNo;
 
     if (childData != null) {
         var date = childData.date;
         var examiner = childData.examiner;
         var name = childData.name;
         var dateOfBirth = childData.dateOfBirth;
-        var ageInYears = childData.ageInYears;
         var yearsInSchool = childData.yearsInSchool;
         var sex = childData.sex;
         var ethnicGroup = childData.ethnicGroup;
@@ -221,14 +234,12 @@ function readData() {
         var tableDataArray = childData.tableDataArray.crown;
 
         document.getElementById("name").value = name;
-        document.getElementById("name").disabled = true;
         if (sex == "male"){
             document.getElementById("male").checked = true;
         }else {
             document.getElementById("female").checked = true;
         }
         document.getElementById("dateOfBirth").value = dateOfBirth;
-        document.getElementById("ageInYears").value = ageInYears;
         document.getElementById("yearsInSchool").value = yearsInSchool;
         document.getElementById("occupation").value = occupation;
         document.getElementById("ethnicGroup").value = ethnicGroup;
@@ -250,7 +261,7 @@ function readData() {
 
         document.getElementById("dateLable").innerText = " " + date;
         document.getElementById("userN").innerText = " " + examiner;
-        document.getElementById("randomId").innerText = " " + identificationNo;
+        document.getElementById("randomId").innerText = " " + currentIdentificationNo;
 
         for (var x = 0; x <= tableDataArray.length; x++) {
             var element = document.getElementById("tableData" + (x + 1));
@@ -258,11 +269,8 @@ function readData() {
             if (element != null)
                 element.value = tableDataArray[x];
 
-            console.log((x + 1) + " => " + x);
+            //console.log((x + 1) + " => " + x);
         }
-
-        disableFields();
-
 
     }
 }

@@ -45,7 +45,7 @@
 
 <br><br>
 
-<form id="viewDataForm">
+<form id="viewDataForm" onsubmit="submitData(false); return false;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -70,15 +70,11 @@
                 </tr>
                 <tr>
                     <td class="tableLabel"><span class="labels">Gender<sup>*</sup></span></td>
-                    <td><input type="radio" id="male" name="gender" value="male" checked style="margin-left:5%;" disabled> Male <input type="radio" name="gender" id="female" value="female" style="margin-left:3%;"> Female</td>
+                    <td><input type="radio" id="male" name="gender" value="male" checked style="margin-left:5%;" > Male <input type="radio" name="gender" id="female" value="female" style="margin-left:3%;"> Female</td>
                 </tr>
                 <tr>
                     <td class="tableLabel"><span class="labels">Date of birth<sup>*</sup></span> </td>
                     <td><input type="date" class="inputs" name="bday" id="dateOfBirth" required></td>
-                </tr>
-                <tr>
-                    <td class="tableLabel"><span class="labels">Age in years<sup>*</sup></span></td>
-                    <td><input type="number" class="inputs" id="ageInYears" required></td>
                 </tr>
                 <tr>
                     <td class="tableLabel"><span class="labels" >Years in school<sup>*</sup></span></td>
@@ -95,7 +91,7 @@
                 <tr>
                     <td class="tableLabel"><span class="labels">Location<sup>*</sup></span></td>
                     <td>
-                        <select type="select" id="location" name="location" style="margin-left: 5%;" disabled>
+                        <select type="select" id="location" name="location" style="margin-left: 5%;" >
                             <option value="urban">Urban</option>
                             <option value="periurban">Periurban</option>
                             <option value="rural">Rural</option>
@@ -903,14 +899,14 @@
     <div class="container">
         <div class="row">
             <div class= "container" style="text-align:center">
-                <input type="submit" class="btn btn-success col-md-12" style="border-radius: 13px; height: 45px;" value="Submit">
+                <input type="submit" class="btn btn-success col-md-12" style="border-radius: 13px; height: 45px;" value="Save">
             </div>
         </div>
     </div>
     <br>
     <div class="row">
         <div class="container alert alert-success" style="text-align:center; display: none;" id="successToast">
-            <strong>Success!</strong> Record Created.
+            <strong>Success!</strong> Record Updated.
         </div>
     </div>
 </form>
