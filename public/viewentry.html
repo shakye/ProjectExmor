@@ -34,6 +34,9 @@
                 <a class="nav-link" href="home.html" onclick="returnHome()" style="cursor:pointer;">Home</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="register.html">Register user</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" onclick="logout()" style="cursor:pointer;">Sign out</a>
             </li>
         </ul>
@@ -402,7 +405,7 @@
             </div>
             <div class="container col-md-4" style="border-left: 1px solid black;">
                 <br>
-                <span><b>Enamel fluorosis <sup>*</sup></b></span><input class="inputs" type="number" style="width:50%;" id="enamelFluorosis" required>
+                <span><b>Enamel fluorosis </b></span><input class="inputs" type="number" style="width:50%;" id="enamelFluorosis" min="0" max="9">
                 <table class="table answerTable">
                     <tr>
                         <th>Status</th>
@@ -437,7 +440,7 @@
                 <table class="table answerTable">
                     <tr>
                         <th>Severity</th>
-                        <th style="border:none;"><input type="number" class="inputs" id="dentalErosionSever" required></th>
+                        <th style="border:none;"><input type="number" class="inputs" id="dentalErosionSever" min="0" max="3"></th>
                     </tr>
                     <tr>
                         <td colspan="2">0 = No sign of erosion</td>
@@ -455,7 +458,7 @@
                         <th colspan="2">No. of teeth</th>
                     </tr>
                     <tr>
-                        <td style="border:none; text-align: center;"><input type="number" min="1" max="32" id="dentalErosionNo" required></td>
+                        <td style="border:none; text-align: center;"><input type="number" min="1" max="32" id="dentalErosionNo"></td>
                     </tr>
                 </table>
             </div>
@@ -464,7 +467,7 @@
                 <table class="table answerTable">
                     <tr>
                         <th>Status</th>
-                        <th style="border:none;"><input type="number" class="inputs" id="dentalTraumaStat" required></th>
+                        <th style="border:none;"><input type="number" class="inputs" id="dentalTraumaStat" min="0" max="9"></th>
                     </tr>
                     <tr>
                         <td colspan="2">0 = No sign of injury</td>
@@ -506,16 +509,16 @@
                         <th>Location</th>
                     </tr>
                     <tr>
-                        <td style="border:none; text-align: center;"><input type="number" style="width:30%" required id="condition1"></td>
-                        <td style="border:none; text-align: center;"><input type="number" style="width:30%" required id="location1"></td>
+                        <td style="border:none; text-align: center;"><input type="number" style="width:30%" min="0" max="9" id="condition1"></td>
+                        <td style="border:none; text-align: center;"><input type="number" style="width:30%" min="0" max="9" id="location1"></td>
                     </tr>
                     <tr>
-                        <td style="border:none; text-align: center;"><input type="number" style="width:30%" required id="condition2"></td>
-                        <td style="border:none; text-align: center;"><input type="number" style="width:30%" required id="location2"></td>
+                        <td style="border:none; text-align: center;"><input type="number" style="width:30%" min="0" max="9" id="condition2"></td>
+                        <td style="border:none; text-align: center;"><input type="number" style="width:30%" min="0" max="9" id="location2"></td>
                     </tr>
                     <tr>
-                        <td style="border:none; text-align: center;"><input type="number" style="width:30%" required id="condition3"></td>
-                        <td style="border:none; text-align: center;"><input type="number" style="width:30%" required id="location3"></td>
+                        <td style="border:none; text-align: center;"><input type="number" style="width:30%" min="0" max="9" id="condition3"></td>
+                        <td style="border:none; text-align: center;"><input type="number" style="width:30%" min="0" max="9" id="location3"></td>
                     </tr>
                 </table>
                 <table class="answerTable">
@@ -568,7 +571,7 @@
                 <table class="table answerTable">
                     <tr>
                         <th>Severity</th>
-                        <th style="border:none;"><input type="number" class="inputs" id="interventionUrgency" required></th>
+                        <th style="border:none;"><input type="number" class="inputs" id="interventionUrgency" min="0" max="4"></th>
                     </tr>
                     <tr>
                         <td colspan="2">0 = No curative treatment needed</td>
@@ -900,7 +903,14 @@
     <div class="container">
         <div class="row">
             <div class= "container" style="text-align:center">
+                <input type="submit" class="btn btn-success col-md-12" style="border-radius: 13px; height: 45px;" value="Submit">
             </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="container alert alert-success" style="text-align:center; display: none;" id="successToast">
+            <strong>Success!</strong> Record Created.
         </div>
     </div>
 </form>

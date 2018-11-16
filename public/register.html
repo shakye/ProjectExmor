@@ -17,7 +17,7 @@
   <link href="stylesheets/signin.css" rel="stylesheet">
 </head>
 
-<body class="text-center">
+<body class="text-center" onload="validateUser()">
   <div class="form-signin">
     <img class="mb-4" src="images/logo.png" alt="" width="100" height="100">
     <h1 class="h3 mb-3 font-weight-bold">Welcome</h1>
@@ -27,24 +27,18 @@
     <input type="text" id="username" class="form-control" placeholder="Name" required autofocus>
 
     <label for="inputEmail" class="sr-only">Email Address</label>
-    <input type="email" id="useremail" class="form-control" placeholder="Email Address" required>
+    <input type="email" id="useremail" class="form-control"  placeholder="Email Address" required>
 
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="password" class="form-control" placeholder="Password" required>
+    <input type="password" id="password" class="form-control"  placeholder="Password" required>
 
     <label for="confirmPassword" class="sr-only">Confirm Password</label>
-    <input type="password" id="cpassword" class="form-control" placeholder="Confirm Password" required>
-
-    <select class="form-control" id="accountType">
-      <option disabled selected>Account Type</option>
-      <option value="Data Entry / Examiner">Data Entry / Examiner</option>
-      <option value="Admin Account">Admin Account</option>
-    </select>
+    <input type="password" id="cpassword" class="form-control" style="border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; margin-bottom: 10px;" placeholder="Confirm Password" required>
 
     <div class="checkbox mb-3">
     </div>
     <button id="registerBtn" onclick="registerUser()" class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-    <p class="mt-5 mb-3 text-success" style="display:none" id="userCreated">User Successfully created</p>
+    <p class="mt-5 mb-3" style="display:none; color:green;" id="userCreated">User Successfully created</p>
     <button id="loginBtn" style="display:none" onclick="window.location.replace('index.html')" class="btn btn-lg btn-primary btn-block">Log in</button>
     <p class="mt-5 mb-3 text-muted">&copy; Copyright 2018</p>
   </div>

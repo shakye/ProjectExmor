@@ -46,13 +46,6 @@ function returnHome() {
     window.location.replace("home.html");
 }
 
-function loginValidation() {
-    var text = window.location.hash.substring(1);
-    if (text == "") {
-        window.location.replace("404.html")
-    }
-}
-
 //Function to log out the signed in user
 function logout() {
     firebase
@@ -331,25 +324,33 @@ function registerUser(){
     var name = $('#username').val();
     var email = $('#useremail').val();
     var password = $('#password').val();
-    var cpassword = $('#password').val();
-    var accountType = $('#accountType').val();
+    var cpassword = $('#cpassword').val();
     
-
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(function (user) {
-            console.log("User " + user.uid + " created successfully!");
-            document.getElementById("userCreated").style.display = "block";
-            document.getElementById("loginBtn").style.display = "block";
-            userNode.child(user.user.uid).set({
-                "name": name,
-                "email": email,
-                "accountType": accountType,
-                "uid":user.user.uid
-            })
-            return user;
-        }).catch(function (error) {
-            console.log(error);
-        });   
+    if(password != cpassword){
+        document.getElementById("userCreated").style.color = "red";
+        document.getElementById("userCreated").innerHTML= "Passwords do not match";
+        document.getElementById("userCreated").style.display = "block";
+    }else if(password == cpassword){
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(function (user) {
+                console.log("User " + user.uid + " created successfully!");
+                document.getElementById("userCreated").style.display = "block";
+                document.getElementById("userCreated").style.color = "green";
+                document.getElementById("userCreated").innerHTML = "User Successfully created";
+                document.getElementById("loginBtn").style.display = "block";
+                userNode.child(user.user.uid).set({
+                    "name": name,
+                    "email": email,
+                    "uid":user.user.uid
+                })
+                return user;
+            }).catch(function (error) {
+                console.log(error);
+                document.getElementById("userCreated").style.color = "red";
+                document.getElementById("userCreated").innerHTML= error;
+                document.getElementById("userCreated").style.display = "block";
+            });
+    }   
 }
 
 function getCurrentDate() {
