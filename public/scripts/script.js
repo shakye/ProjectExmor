@@ -107,7 +107,7 @@ function submitData(isHome) {
     var yearsInSchool = $('#yearsInSchool').val();
     var sex = $('input[name=gender]:checked').val();
     var ethnicGroup = $('#ethnicGroup').val();
-    var otherGroup = $('#otherGroup').val();
+    var otherGroup = $('#otherData').val();
     var occupation = $('#occupation').val();
     var location = $('#location').find(":selected").val();
     var enamelFluorosis = $('#enamelFluorosis').val();
@@ -147,6 +147,7 @@ function submitData(isHome) {
       "enamelFluorosis": enamelFluorosis,
       "interventionUrgency": interventionUrgency,
       "examiner":username,
+      "otherGroup":otherGroup,
       dentalErosion: {
         severity: dentalErosionSever,
         noOfTeeth: dentalErosionNo
