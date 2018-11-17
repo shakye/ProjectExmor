@@ -42,7 +42,7 @@
         <!-- End of NavBar -->
         <!-- Body -->
         <br><br>
-        <form id="form" onsubmit="submitData(); return false;">
+        <form id="form" onsubmit="submitData(true); return false;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -72,10 +72,6 @@
                         <tr>
                             <td class="tableLabel"><span class="labels">Date of birth<sup>*</sup></span> </td>
                             <td><input type="date" class="inputs" name="bday" id="dateOfBirth" required></td>
-                        </tr>
-                        <tr>
-                            <td class="tableLabel"><span class="labels">Age in years<sup>*</sup></span></td>
-                            <td><input type="number" class="inputs" id="ageInYears" required></td>
                         </tr>
                         <tr>
                             <td class="tableLabel"><span class="labels" >Years in school<sup>*</sup></span></td>
