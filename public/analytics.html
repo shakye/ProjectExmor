@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  
+
+  <title>Humanity First - Oral Health Data Analytics</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+  <!-- Custom styles for this template -->
+  <link href="stylesheets/pricing.css" rel="stylesheet">
+  <script src="scripts/xlsx.full.min.js"></script>
+  <script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+  <script src="scripts/script.js"></script>
+  <style>
+    .p-3{
+      padding:0px !important;
+    }
+    </style>
+</head>
+
+<body onload="validateUser()">
+
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+
+    <nav class="navbar bg-light navbar-light" style="width:100%">
+      <!-- Brand -->
+      <a class="navbar-brand"><img class="navLogo" src="images/logo.png" width="70px" height="70px"></a>
+      <a class="navbar-brand">Humanity First</a>
+
+      <!-- Toggler/collapsibe Button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="home.html" onclick="returnHome()" style="cursor:pointer;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="viewId" href="adminView.html">View Data</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="logout()">Sign out</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+
+  </div>
+
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Oral Health Data Analytics</h1>
+  </div>
+
+
+  <div class="container">
+
+    <form id="formTest" class="form-inline justify-content-center">
+
+      <label class="sr-only" for="inlineFormInputName2">Name</label>
+      <select required class="form-control mb-2 mr-sm-2" id="myselect">
+        <option value="default">Select the property</option>
+        <option value="age">Age</option>
+        <option value="ethnicGroup">Ethnic Group</option>
+        <option value="location">Location</option>
+      </select>
+
+      <label class="sr-only" for="inlineFormInputName2">Name</label>
+      <input type="text" class="form-control mb-2 mr-sm-2" id="filterValue" placeholder="Enter required value" required>
+
+
+      <button onclick="analytics();return false" class="form-control mr-sm-2 btn btn-primary mb-2">Submit</button>
+      <button type="button" onclick="exportToExcel()" class="form-control mr-sm-2 btn btn-success mb-2" id="button-a">Export
+        to Excel</button>
+      <button type="button" onclick="clearTable()" class="form-control mr-sm-2 btn btn-secondary mb-2" id="button-a">Clear</button>
+
+    </form>
+  </div>
+
+  <div class="container">
+
+    <table class="table" style="margin-top:30px" id="ex-table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Date of Birth</th>
+          <th scope="col">Occupation</th>
+          <th scope="col">Location</th>
+          <th scope="col">Ethnic Group</th>
+          <th scope="col">Gender</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+
+
+
+
+
+  </div>
+  <footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+      <a href="https://www.fiverr.com/s2/2eeb646318?utm_source=CopyLink_Mobile"> Shakye</a>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.6/holder.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script>
+    Holder.addTheme('thumb', {
+      bg: '#55595c',
+      fg: '#eceeef',
+      text: 'Thumbnail'
+    });
+  </script>
+</body>
+
+</html>
