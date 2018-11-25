@@ -379,3 +379,93 @@ function getCurrentDate() {
     today = yyyy + '-' + mm + '-' + dd;
     return today;
   }
+
+  function analytics(){
+
+    $('#ex-table tbody > tr').remove();
+    excelData = [];
+
+    var filterCondition1 = $("#myselect").val();
+    var filterValue = $('#filterValue').val();
+
+    console.log(filterCondition1);
+    console.log(filterValue);
+    
+    if ((filterCondition1 != "default" || "") && filterValue != null) {
+
+        var consentDataRef = dbRef.ref('oralHealthData');
+        return consentDataRef.once('value').then(function (snapshot) {
+            consentDataRef.orderByChild(filterCondition1).equalTo(filterValue).on("value", function (snapshot) {
+                console.log(snapshot.val());
+                var header = ["Name", "Date Of Birth", "Occupation", "Location", "Ethnic Group", "Sex"];
+                excelData.push(header);
+                var content = '';
+                var i = 1;
+                snapshot.forEach(function (data) {
+                    if ((data.child("ethnicGroup").val()) == ("fula1")) {
+                        //console.log(data.key);
+                    }
+                    content += '<tr>';
+                    content += '<td>' + i + '</td>';
+                    content += '<td>' + (data.child("name").val()) + '</td>';
+                    content += '<td>' + (data.child("dateOfBirth").val()) + '</td>';
+                    content += '<td>' + (data.child("occupation").val()) + '</td>';
+                    content += '<td>' + (data.child("location").val()) + '</td>';
+                    content += '<td>' + (data.child("ethnicGroup").val()) + '</td>';
+                    content += '<td>' + (data.child("sex").val()) + '</td>';
+                    content += '<td>' + 'View' + '</td>';
+                    content += '</tr>';
+
+                    var feed = [(data.child("name").val()), (data.child("dateOfBirth").val()), (data.child("occupation").val()), (data.child("location").val()), (data.child("ethnicGroup").val()), (data.child("sex").val())];
+                    excelData.push(feed);
+                    i++;
+                });
+                $('#ex-table').append(content);
+            });
+        });
+    }
+}
+
+function clearTable(){
+    $('#ex-table tbody > tr').remove();
+    $('#filterValue').val("");
+    $('#myselect').prop('selectedIndex',0);
+}
+
+
+function exportToExcel() {
+
+    if(!(excelData.length == 0)){
+
+        var wb = XLSX.utils.book_new();
+    wb.Props = {
+        Title: "SheetJS Tutorial",
+        Subject: "Test",
+        Author: "Red Stapler",
+        CreatedDate: new Date(2017, 12, 19)
+    };
+
+    wb.SheetNames.push("Test Sheet");
+    var ws_data = [['hello', 'world'],['hello', 'world']];
+    
+    var feed = ["2017-03-14T01:00:32Z", "33358", "4", "4", "0"];
+    //var data = [];
+    ws_data.push(feed);
+    //console.log(data);
+    
+    var ws = XLSX.utils.aoa_to_sheet(excelData);
+    wb.Sheets["Test Sheet"] = ws;
+    var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+    function s2ab(s) {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
+    }
+    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'test.xlsx');
+    
+    }
+
+
+    
+}
